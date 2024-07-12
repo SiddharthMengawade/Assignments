@@ -1,44 +1,45 @@
 #include<stdio.h>
 
-
-void StrNCat(char *src, char *dest, int iCnt)
+int WordCount(char *str)
 {
-    while(*src != '\0')
-    {
-        src++;
-    }
-    *src = ' ';
-    src++;
- 
-    while(*dest != '\0' && iCnt!=0)
-    {
-        *src = *dest;
+    int iCnt = 0;
 
-        src++;
-        dest++;
-        iCnt--;
+    while(*str !='\0')
+    {
+        if(*str == ' ')
+        {
+            while(*str == ' ' && *str != '\0')
+            {
+                str++;
+            }
+        }
+        else if(*str != ' ')
+        {
+            while(*str != ' ' && *str !='\0')
+            {
+                str++;
+            }
+            iCnt++;
+        }
+        
+
+        
     }
-    *src = '\0';
+    return iCnt;
+
 }
 
 int main()
 {
     char Arr[30];
-    char Brr[30];
-    int iValue = 0;
+    int iRet = 0;
 
-    printf("Enter the first string :\n");
-    gets(Arr);
+    printf("Enter the string :\n");
+    scanf("%[^'\n']s" ,Arr);
 
-    printf("Enter the second string :\n");
-    gets(Brr);
+    iRet = WordCount(Arr);
 
-    printf("Enter the index number :\n");
-    scanf("%d", &iValue);
-
-    StrNCat(Arr, Brr, iValue);
-
-    printf("Destinated string is : %s\n", Arr);
+    printf("Total word count is %d\n", iRet);
 
     return 0;
 }
